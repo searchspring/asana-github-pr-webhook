@@ -1,0 +1,6 @@
+{
+    "version": 2,
+    "builds": [
+      { "src": "webhook.js", "use": "@now/node" }
+    ]
+  }
