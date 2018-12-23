@@ -1,5 +1,8 @@
 # asana-github-pr-webhook
 
+[![CircleCI](https://circleci.com/gh/codeallthethingz/asana-github-pr-webhook/tree/master.svg?style=svg)](https://circleci.com/gh/codeallthethingz/asana-github-pr-webhook/tree/master)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 Connects Github and Asana.
 
 ## Usage
