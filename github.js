@@ -1,3 +1,5 @@
+var githubator = require('./githubator');
+
 /**
  * Find possible asana ids in various parts of the pull request webhook body.
  * @param {string} data a PR event body from github
@@ -5,6 +7,15 @@
 module.exports.getAsanaId = function (data) {
     var toMatch = data['pull_request']['title'];
     return match(toMatch);
+}
+
+module.exports.addAsanaTaskToGithubPr = async function (githubData, asanaData, replacementGithubator) {
+    if (replacementGithubator) {
+        githubator = replacementGithubator;
+    }    
+    var url = 'https://app.asana.com/0/0/' + asanaData.gid;
+    var comment = '<strong>Linked Asana:</strong> ' + asanaData.name + '\n<a href="' + url + '">' + url + '</a>'
+    await githubator.addComment(githubData.apiUrl, comment);
 }
 
 module.exports.shouldProcess = function (data) {

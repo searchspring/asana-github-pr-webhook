@@ -1,5 +1,6 @@
 const processor = require('./processor');
 const asanator = require('./asanator');
+const githubator = require('./githubator');
 
 var eventData = {
     "action": "closed",
@@ -17,12 +18,17 @@ const asanaTask = {
 };
 
 test('process test', async () => {
-    asanator.asanaAccessToken = "temp";
+    asanator.asanaAccessToken = 'temp';
+    githubator.githubAccessToken = 'temp';
+
     asanator.searchByDate = function () {
         return [asanaTask];
-    }    
-    asanator.addComment = function (){
-        return "";
     }
-    await processor.processWebhook(eventData, asanator);
+    asanator.addComment = function () {
+        return '';
+    }
+    githubator.addComment = function () {
+        return '';
+    }
+    await processor.processWebhook(eventData, asanator), githubator;
 });

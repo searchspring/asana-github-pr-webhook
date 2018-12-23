@@ -1,4 +1,23 @@
 const github = require('./github');
+var githubator = require('./githubator');
+
+test('add comment to github', async () => {
+
+  var githubData = {
+    apiUrl: 'https://api.github.com/repos/codeallthethingz/asana-github-pr-webhook/issues/2'
+  }
+  var asanaData = {
+    gid: '12341234',
+    name: 'some kinda title'
+  }
+
+  githubator.githubAccessToken = 'temp';
+  githubator.addComment = async function(apiUrl, comment){
+    expect(apiUrl).toEqual(githubData.apiUrl);
+    expect(comment).toContain('<a href="https://app.asana.com/0/0/12341234">https://app.asana.com/0/0/12341234</a>');
+  };
+  await github.addAsanaTaskToGithubPr(githubData, asanaData, githubator);
+});
 
 test('webhook id in name 4 chars or longer', () => {
 
@@ -72,6 +91,6 @@ test('should process', () => {
 
   baseData.action = "opened";
   baseData.pull_request.title = "1234 something";
-  baseData.changes =  null;
+  baseData.changes = null;
   expect(github.shouldProcess(baseData)).toEqual(true);
 });

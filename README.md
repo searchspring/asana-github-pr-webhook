@@ -4,7 +4,7 @@ Connects Github and Asana.
 
 ## Usage
 
-Use the last 4 digits of an Asana task at the beginning of a PR name.
+Use the last 4 digits of an Asana task ID at the beginning of a PR name.
 
 <img src="screen1.png" width="400px">
 
