@@ -34,7 +34,7 @@ jobs:
 
 
   deploy-to-now:
-    working_directory: ~/food-diary-tracker
+    working_directory: ~/repo
     docker:
       - image: circleci/node:10.8.0
     steps:
