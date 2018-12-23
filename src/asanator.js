@@ -1,5 +1,7 @@
 var request = require('async-request')
-
+/**
+ * All the http requests to asana
+ */
 module.exports.asanaAccessToken = process.env.ASANA_ACCESS_TOKEN
 
 module.exports.addComment = async function (gid, comment) {

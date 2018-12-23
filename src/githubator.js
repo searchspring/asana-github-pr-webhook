@@ -1,5 +1,8 @@
 var request = require('async-request')
 
+/**
+ * All the http requests to github.
+ */
 module.exports.githubAccessToken = process.env.GITHUB_ACCESS_TOKEN
 
 module.exports.addComment = async function (apiUrl, message) {
