@@ -3,12 +3,11 @@ module.exports = function (wallaby) {
 
   return {
     files: [
-      '*.js',
-      { pattern: '*.test.js', ignore: true },
-      { pattern: 'wallaby.js', ignore: true }
+      'src/*.js',
+      { pattern: 'src/*.test.js', ignore: true }
     ],
     tests: [
-      '*.test.js'
+      'src/*.test.js'
     ],
     env: {
       type: 'node'

@@ -1,4 +1,4 @@
-const processor = require('./processor')
+const processor = require('./src/processor')
 const { json } = require('micro')
 
 const verifySecret = require('verify-github-webhook-secret')

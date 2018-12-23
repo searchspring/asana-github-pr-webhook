@@ -1,9 +1,10 @@
 LICENSE
 README.md
-*.test.js
+../*.test.js
 wallaby.js
 node_modules
 dist
 coverage
-*.png
+img
 .circleci
+.gitignore
