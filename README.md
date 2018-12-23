@@ -6,11 +6,11 @@ Connects Github and Asana.
 
 Use the last 4 digits of an Asana task at the beginning of a PR name.
 
-<img src="screen1.png">
+<img src="screen1.png" width="400px">
 
 See a link to the PR appear as a comment on that task in Asana.
 
-<img src="screen2.png">
+<img src="screen2.png" width="400px">
 
 ## Installation
 
