@@ -33,3 +33,30 @@ jobs:
       - run: node ./node_modules/.bin/codecov -t $CODECOV_TOKEN
 
 
+  deploy-to-now:
+    working_directory: ~/food-diary-tracker
+    docker:
+      - image: circleci/node:10.8.0
+    steps:
+      - checkout
+
+      - run:
+          name: Install Now CLI
+          command: sudo npm install --global --unsafe-perm now
+
+      - run:
+          name: Now deploy
+          command: now -e WEBHOOK_SECRET=$WEBHOOK_SECRET -e ASANA_ACCESS_TOKEN=$ASANA_ACCESS_TOKEN -e GITHUB_ACCESS_TOKEN=$GITHUB_ACCESS_TOKEN && now alias
+
+workflows:
+  version: 2
+  master:
+    jobs:
+      - build
+      - deploy-to-now:
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - build
