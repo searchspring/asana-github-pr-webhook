@@ -1,0 +1,6 @@
+README.md
+*.test.js
+wallaby.js
+node_modules
+dist
+coverage

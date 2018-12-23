@@ -1,0 +1,26 @@
+{
+  "name": "asana-github-pr-webhook",
+  "version": "0.0.1",
+  "description": "Puts links from Github into comments on referenced asana tickt",
+  "scripts": {
+    "test": "node node_modules/jest/bin/jest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeallthethingz/asana-github-pr-webhook.git"
+  },
+  "author": "codeallthethingz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codeallthethingz/asana-github-pr-webhook/issues"
+  },
+  "homepage": "https://github.com/codeallthethingz/asana-github-pr-webhook#readme",
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "nock": "^10.0.4"
+  },
+  "dependencies": {
+    "async-request": "^1.2.0",
+    "verify-github-webhook-secret": "^1.0.3"
+  }
+}
