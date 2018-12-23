@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Puts links from Github into comments on referenced asana tickt",
   "scripts": {
-    "test": "node_modules/standard/bin/cmd.js --fix && node node_modules/jest/bin/jest.js"
+    "test": "node_modules/standard/bin/cmd.js --fix && node node_modules/jest/bin/jest.js --coverage"
   },
   "repository": {
     "type": "git",
