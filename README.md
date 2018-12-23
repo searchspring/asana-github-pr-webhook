@@ -1,10 +1,10 @@
-# asana-github-pr-webhook
+# Asana Github PR Webhook
 
 [![CircleCI](https://circleci.com/gh/codeallthethingz/asana-github-pr-webhook/tree/master.svg?style=svg)](https://circleci.com/gh/codeallthethingz/asana-github-pr-webhook/tree/master)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![codecov](https://codecov.io/gh/codeallthethingz/asana-github-pr-webhook/branch/master/graph/badge.svg)](https://codecov.io/gh/codeallthethingz/asana-github-pr-webhook)
 
-Connects Github and Asana.
+Connects Github and Asana when you put an Asana ID at the beginning of a PR title.
 
 ## Usage
 
