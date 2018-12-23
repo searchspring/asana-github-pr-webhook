@@ -8,7 +8,7 @@ jobs:
     docker:
       - image: circleci/node:10.8.0
 
-    working_directory: ~/repo
+    working_directory: ~/asana-github-pr-webhook
 
     steps:
       - checkout
@@ -34,7 +34,7 @@ jobs:
 
 
   deploy-to-now:
-    working_directory: ~/repo
+    working_directory: ~/asana-github-pr-webhook
     docker:
       - image: circleci/node:10.8.0
     steps:
