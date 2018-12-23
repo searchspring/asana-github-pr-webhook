@@ -11,9 +11,9 @@ test('add github link to asana', async () => {
   asanator.asanaAccessToken = "temp";
   asanator.addComment = async function (var1, var2) {
     expect(var1).toEqual(asanaTask.gid);
-    expect(var2).toEqual('<strong>Linked PR:</strong> my pr title\n<a href=\"http://somekindaurl\"/>');
+    expect(var2).toEqual('<strong>Linked PR:</strong> my pr -&gt; title\n<a href=\"http://somekindaurl\"/>');
   }
-  await asana.addGithubPrToAsanaTask({ 'title': 'my pr title', 'url': 'http://somekindaurl' }, asanaTask, asanator);
+  await asana.addGithubPrToAsanaTask({ 'title': 'my pr -> title', 'url': 'http://somekindaurl' }, asanaTask, asanator);
 });
 
 test('find a matching asana task', async () => {
