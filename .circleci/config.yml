@@ -21,7 +21,6 @@ jobs:
           - v1-dependencies-
 
       - run: npm install
-      - run: node ./node_modules/.bin/codecov -t $CODECOV_TOKEN
 
       - save_cache:
           paths:
@@ -30,5 +29,7 @@ jobs:
         
       # run tests!
       - run: npm test
+
+      - run: node ./node_modules/.bin/codecov -t $CODECOV_TOKEN
 
 
