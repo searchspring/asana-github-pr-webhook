@@ -12,6 +12,10 @@ See a link to the PR appear as a comment on that task in Asana.
 
 <img src="screen2.png" width="400px">
 
+See a link to the Asana task appear as a comment on the PR.
+
+<img src="screen3.png" width="400px">
+
 ## Installation
 
 ### 1. Get an Asana access token
@@ -19,7 +23,13 @@ See a link to the PR appear as a comment on that task in Asana.
 - To get an access token go to 'My Profile Settings' -> Apps -> 'Manage Developer Apps' -> 'Create new personal access token'.
 - Make a note of the access token as you'll need it later on. `<asana access token>`
 
-### 2. Deploy the application
+### 2. Get an Github access token
+
+- To get an access token go to 'Settings' -> 'Developer Settings' -> 'Personal Access Token' -> 'Generate new token'.
+- Under 'scopes' select 'Repo'.
+- Make a note of the access token as you'll need it later on. `<github access token>`
+
+### 3. Deploy the application
 
 This project uses Zeit Now to deploy, which requires only a github account and gives you 2 million free invocations a month.
 
@@ -31,11 +41,12 @@ This project uses Zeit Now to deploy, which requires only a github account and g
     ```bash
     now \
       -e WEBHOOK_SECRET="<webhook secret>" \
-      -e ASANA_ACCESS_TOKEN="<asana access token from step 1>"
+      -e ASANA_ACCESS_TOKEN="<asana access token from step 1>"\
+      -e GITHUB_ACCESS_TOKEN="<github access token from step 2>"
     ```
 - Run `now alias` to set the non-changing URL that we can use in step 3.
 
-### 3. Setup webhooks in Github
+### 4. Setup webhooks in Github
 
 - For the github project you want to integrate, go to settings -> webhooks -> add a new webhook.
 - Set the Payload URL to `https://<url from step 2>/webhook.js`

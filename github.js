@@ -1,4 +1,5 @@
 var githubator = require('./githubator');
+var xmlescape = require('xml-escape');
 
 /**
  * Find possible asana ids in various parts of the pull request webhook body.
@@ -14,7 +15,7 @@ module.exports.addAsanaTaskToGithubPr = async function (githubData, asanaData, r
         githubator = replacementGithubator;
     }    
     var url = 'https://app.asana.com/0/0/' + asanaData.gid;
-    var comment = '<strong>Linked Asana:</strong> ' + asanaData.name + '\n<a href="' + url + '">' + url + '</a>'
+    var comment = '<strong>Linked Asana:</strong> ' + xmlescape(asanaData.name) + '\n<a href="' + url + '">' + url + '</a>'
     await githubator.addComment(githubData.apiUrl, comment);
 }
 

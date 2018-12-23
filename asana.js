@@ -1,11 +1,12 @@
 var asanator = require('./asanator');
+const xmlescape = require('xml-escape'); 
 
 module.exports.addGithubPrToAsanaTask = async function (githubData, asanaData, replacementAsanator) {
     if (replacementAsanator) {
         asanator = replacementAsanator;
     }
     var comment = '';
-    comment += '<strong>Linked PR:</strong> ' + githubData.title + '\n<a href="' + githubData.url + '"/>'
+    comment += '<strong>Linked PR:</strong> ' + xmlescape(githubData.title) + '\n<a href="' + githubData.url + '"/>'
     await asanator.addComment(asanaData.gid, comment);
 };
 
@@ -33,7 +34,7 @@ module.exports.getMatchingAsanaTask = async function (id, replacementAsanator) {
         console.log('found ' + rows.length + ' items');
         for (var i = 0; i < rows.length; i++) {
             if (rows[i].gid.toString().endsWith(id)) {
-                console.log("Made " + callsMade + ' calls to asana api - found: ' + JSON.stringify(rows[i]));
+                console.log("made " + callsMade + ' calls to asana api - found: ' + JSON.stringify(rows[i]));
                 return rows[i];
             }
         }

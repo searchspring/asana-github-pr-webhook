@@ -16,10 +16,11 @@
   },
   "homepage": "https://github.com/codeallthethingz/asana-github-pr-webhook#readme",
   "devDependencies": {
-    "jest": "^23.6.0" 
-  }, 
+    "jest": "^23.6.0"
+  },
   "dependencies": {
     "async-request": "^1.2.0",
-    "verify-github-webhook-secret": "^1.0.3"
+    "verify-github-webhook-secret": "^1.0.3",
+    "xml-escape": "^1.1.0"
   }
 }

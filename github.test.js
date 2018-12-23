@@ -12,7 +12,7 @@ test('add comment to github', async () => {
   }
 
   githubator.githubAccessToken = 'temp';
-  githubator.addComment = async function(apiUrl, comment){
+  githubator.addComment = async function (apiUrl, comment) {
     expect(apiUrl).toEqual(githubData.apiUrl);
     expect(comment).toContain('<a href="https://app.asana.com/0/0/12341234">https://app.asana.com/0/0/12341234</a>');
   };
