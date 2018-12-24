@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "async-request": "^1.2.0",
+    "debug": "^4.1.1",
     "verify-github-webhook-secret": "^1.0.3",
     "xml-escape": "^1.1.0"
   },

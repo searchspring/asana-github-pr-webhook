@@ -1,5 +1,6 @@
 var githubator = require('./githubator')
 var xmlescape = require('xml-escape')
+const logTrace = require('debug')('agpw:github:trace')
 
 /**
  * Find possible asana ids in various parts of the pull request webhook body.
@@ -11,6 +12,7 @@ module.exports.getAsanaId = function (data) {
 }
 
 module.exports.addAsanaTaskToGithubPr = async function (githubData, asanaData, replacementGithubator) {
+  logTrace('addAsanaTaskToGithubPr')
   if (replacementGithubator) {
     githubator = replacementGithubator
   }
@@ -20,6 +22,7 @@ module.exports.addAsanaTaskToGithubPr = async function (githubData, asanaData, r
 }
 
 module.exports.shouldProcess = function (data) {
+  logTrace('shouldProcess')
   var action = data.action
   if (action !== 'edited' && action !== 'opened') {
     return false
