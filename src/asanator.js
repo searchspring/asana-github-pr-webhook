@@ -16,7 +16,9 @@ module.exports.addComment = async function (gid, comment) {
     options.method = 'POST'
     var url = 'https://app.asana.com/api/1.0/tasks/' + gid + '/stories'
     logDebug(url)
-    await request(url, options)
+    var res = await request(url, options)
+    logInfo('added comment')
+    logDebug(res)
   } catch (error) {
     logError(error)
   }
