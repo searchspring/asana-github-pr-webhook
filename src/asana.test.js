@@ -31,6 +31,14 @@ test('find a matching asana task', async () => {
     asanaTask
   )
 })
+test('error matching asana task', async () => {
+  asanator.asanaAccessToken = 'temp'
+  asanator.searchByDate = async function () {
+    throw Error('something bad happened')
+  }
+  var res = await asana.getMatchingAsanaTask('9833', asanator)
+  expect(res).toEqual(null)
+})
 
 test('exaust api calls', async () => {
   asanator.asanaAccessToken = 'temp'
