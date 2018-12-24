@@ -1,23 +1,21 @@
 const github = require('./github')
 const asana = require('./asana')
-const logInfo = require('debug')('agpw:processor:info')
-const logTrace = require('debug')('agpw:processor:trace')
-const logDebug = require('debug')('agpw:processor:debug')
+const log = require('./log')('agpw:processor')
 
 module.exports.processWebhook = async function (data, replacementAsanator, replacementGithubator) {
-  logTrace('processWebhook')
+  log.trace('processWebhook')
   if (!github.shouldProcess(data)) {
-    logInfo('skipping as no change')
+    log.info('skipping as no change')
     return
   }
 
   // get asana prefix id
   var asanaId = github.getAsanaId(data)
-  logDebug('Found asana id: ' + asanaId)
+  log.debug('Found asana id: ' + asanaId)
 
   // get real asana id
   var asanaData = await asana.getMatchingAsanaTask(asanaId, replacementAsanator)
-  logDebug('Found asana task: ' + asanaData)
+  log.debug('Found asana task: ' + JSON.stringify(asanaData))
 
   if (asanaData) {
     // put github link on asana

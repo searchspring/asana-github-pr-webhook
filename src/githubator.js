@@ -1,7 +1,5 @@
 var request = require('async-request')
-const logTrace = require('debug')('agpw:githubator:trace')
-const logError = require('debug')('agpw:githubator:error')
-const logDebug = require('debug')('agpw:githubator:debug')
+const log = require('./log')('agpw:githubator')
 
 /**
  * All the http requests to github.
@@ -9,10 +7,10 @@ const logDebug = require('debug')('agpw:githubator:debug')
 module.exports.githubAccessToken = process.env.GITHUB_ACCESS_TOKEN
 
 module.exports.addComment = async function (apiUrl, message) {
-  logTrace('addComment')
+  log.trace('addComment')
   try {
     var url = apiUrl + '/comments?access_token=' + module.exports.githubAccessToken
-    logDebug(url)
+    log.debug(url)
     var res = await request(url,
       {
         'method': 'POST',
@@ -21,8 +19,8 @@ module.exports.addComment = async function (apiUrl, message) {
         },
         'data': JSON.stringify({ 'body': message })
       })
-    logDebug(res)
+    log.debug(res)
   } catch (error) {
-    logError(error)
+    log.error(error)
   }
 }
