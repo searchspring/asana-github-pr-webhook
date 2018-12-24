@@ -1,16 +1,23 @@
 const xmlescape = require('xml-escape')
 var asanator = require('./asanator')
+const logInfo = require('debug')('agpw:asana:info')
+const logTrace = require('debug')('agpw:asana:trace')
+const logError = require('debug')('agpw:asana:error')
+const logDebug = require('debug')('agpw:asana:debug')
 
 module.exports.addGithubPrToAsanaTask = async function (githubData, asanaData, replacementAsanator) {
+  logTrace('addGithubPrToAsanaTask')
   if (replacementAsanator) {
     asanator = replacementAsanator
   }
   var comment = ''
   comment += '<strong>Linked PR:</strong> ' + xmlescape(githubData.title) + '\n<a href="' + githubData.url + '"/>'
+  logDebug('comment: ' + comment)
   await asanator.addComment(asanaData.gid, comment)
 }
 
 module.exports.getMatchingAsanaTask = async function (id, replacementAsanator) {
+  logTrace('getMatchingAsanaTask')
   if (replacementAsanator) {
     asanator = replacementAsanator
   }
@@ -26,19 +33,19 @@ module.exports.getMatchingAsanaTask = async function (id, replacementAsanator) {
     try {
       rows = await asanator.searchByDate(d1, d2)
     } catch (error) {
-      console.error(error)
+      logError(error)
     }
     callsMade++
     lookedAt += rows.length
     for (var i = 0; i < rows.length; i++) {
       if (rows[i].gid.toString().endsWith(id)) {
-        console.log(lookedAt + ' records looked at, ' + callsMade + ' calls to asana api - found: ' + JSON.stringify(rows[i]))
+        logInfo(lookedAt + ' records looked at, ' + callsMade + ' calls to asana api - found: ' + JSON.stringify(rows[i]))
         return rows[i]
       }
     }
     d1.setHours(d1.getHours() - hoursInc)
   }
 
-  console.log('failed to find id: ' + id + ' in ' + callsMade + ' calls to asana api')
+  logInfo('failed to find id: ' + id + ' in ' + callsMade + ' calls to asana api')
   return null
 }
