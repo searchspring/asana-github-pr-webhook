@@ -1,4 +1,4 @@
-var request = require('async-request')
+var axios = require('axios')
 const log = require('./log')('agpw:githubator')
 
 /**
@@ -11,14 +11,7 @@ module.exports.addComment = async function (apiUrl, message) {
   try {
     var url = apiUrl + '/comments?access_token=' + module.exports.githubAccessToken
     log.debug(url)
-    var res = await request(url,
-      {
-        'method': 'POST',
-        'headers': {
-          'User-Agent': 'webhook processor'
-        },
-        'data': JSON.stringify({ 'body': message })
-      })
+    var res = await axios.post(url, { 'body': message })
     log.debug(res)
   } catch (error) {
     log.error(error)
