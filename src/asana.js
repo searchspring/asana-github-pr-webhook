@@ -24,17 +24,15 @@ module.exports.getMatchingAsanaTask = async function (id, replacementAsanator) {
 
     var rows = []
     try {
-      console.log('asana request - search by date ' + callsMade)
       rows = await asanator.searchByDate(d1, d2)
     } catch (error) {
       console.error(error)
     }
     callsMade++
     lookedAt += rows.length
-    console.log('found ' + rows.length + ' items')
     for (var i = 0; i < rows.length; i++) {
       if (rows[i].gid.toString().endsWith(id)) {
-        console.log('made ' + callsMade + ' calls to asana api - found: ' + JSON.stringify(rows[i]))
+        console.log(lookedAt + ' records looked at, ' + callsMade + ' calls to asana api - found: ' + JSON.stringify(rows[i]))
         return rows[i]
       }
     }
