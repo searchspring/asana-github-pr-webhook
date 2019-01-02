@@ -34,17 +34,21 @@ module.exports.shouldProcess = function (data) {
   }
 
   var title = data.pull_request.title
+  var body = data.pull_request.body
   var change = data.changes && data.changes.title && data.changes.title.from ? data.changes.title.from : null
-  var titleId = match(title)
+  var id = match(title)
+  if (!id) {
+    id = match(body)
+  }
 
-  if (action === 'opened' && titleId !== null) {
+  if (action === 'opened' && id !== null) {
     return true
   }
   if (change === null) {
     return false
   }
   var changeId = match(change)
-  return titleId != null && titleId !== changeId && change !== null
+  return id != null && id !== changeId && change !== null
 }
 
 function match (toMatch) {
