@@ -104,4 +104,10 @@ test('should process', () => {
   baseData.pull_request.body = '1234 id something'
   baseData.changes = null
   expect(github.shouldProcess(baseData)).toEqual(true)
+
+  baseData.action = 'processed'
+  baseData.pull_request.title = 'no id something'
+  baseData.pull_request.body = '1234 id something'
+  baseData.changes = null
+  expect(github.shouldProcess(baseData)).toEqual(false)
 })
