@@ -27,7 +27,10 @@ test('webhook id in name 4 chars or longer', () => {
       'title': 'Update the README with new information',
       'body': 'a description'
     },
-    'changes': { 'title': { 'from': 'something' } }
+    'changes': {
+      'title': { 'from': 'something' },
+      'body': { 'from': 'something' }
+    }
   }
 
   baseData.pull_request.title = '1234 something'
@@ -60,7 +63,10 @@ test('should process', () => {
       'title': 'Update the README with new information',
       'body': 'a description'
     },
-    'changes': { 'title': { 'from': 'something' } }
+    'changes': {
+      'title': { 'from': 'something' },
+      'body': { 'from': 'something' }
+    }
   }
 
   baseData.pull_request.title = '1234 something'
@@ -79,6 +85,7 @@ test('should process', () => {
   expect(github.shouldProcess(baseData)).toEqual(true)
 
   baseData.changes.title.from = null
+  baseData.changes.body.from = null
   expect(github.shouldProcess(baseData)).toEqual(false)
 
   baseData.pull_request.title = '1234 something'
@@ -96,18 +103,27 @@ test('should process', () => {
 
   baseData.action = 'opened'
   baseData.pull_request.title = '1234 something'
-  baseData.changes = null
   expect(github.shouldProcess(baseData)).toEqual(true)
 
   baseData.action = 'opened'
   baseData.pull_request.title = 'no id something'
   baseData.pull_request.body = '1234 id something'
-  baseData.changes = null
   expect(github.shouldProcess(baseData)).toEqual(true)
 
   baseData.action = 'processed'
   baseData.pull_request.title = 'no id something'
   baseData.pull_request.body = '1234 id something'
-  baseData.changes = null
+  expect(github.shouldProcess(baseData)).toEqual(false)
+
+  baseData.pull_request.title = 'no id something'
+  baseData.pull_request.body = '1234 something'
+  baseData.changes.body.from = '1235 xxoc'
+  baseData.action = 'edited'
+  expect(github.shouldProcess(baseData)).toEqual(true)
+
+  baseData.changes.title.from = null
+  baseData.pull_request.title = 'nothin'
+  baseData.pull_request.body = '1234 somethin'
+  baseData.changes.body.from = '1234 something'
   expect(github.shouldProcess(baseData)).toEqual(false)
 })
