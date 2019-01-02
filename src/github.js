@@ -7,8 +7,13 @@ const log = require('./log')('agpw:github')
  * @param {string} data a PR event body from github
  */
 module.exports.getAsanaId = function (data) {
-  var toMatch = data['pull_request']['title']
-  return match(toMatch)
+  var title = data['pull_request']['title']
+  var body = data['pull_request']['body']
+  var m = match(title)
+  if (!m) {
+    m = match(body)
+  }
+  return m
 }
 
 module.exports.addAsanaTaskToGithubPr = async function (githubData, asanaData, replacementGithubator) {

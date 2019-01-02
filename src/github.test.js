@@ -24,7 +24,8 @@ test('webhook id in name 4 chars or longer', () => {
     'number': 1,
     'pull_request': {
       'url': 'https://api.github.com/repos/Codertocat/Hello-World/pulls/1',
-      'title': 'Update the README with new information'
+      'title': 'Update the README with new information',
+      'body': 'a description'
     },
     'changes': { 'title': { 'from': 'something' } }
   }
@@ -41,7 +42,12 @@ test('webhook id in name 4 chars or longer', () => {
   baseData.pull_request.title = '12345 something'
   expect(github.getAsanaId(baseData)).toEqual('12345')
 
+  baseData.pull_request.title = 'something'
+  baseData.pull_request.body = '12345 something'
+  expect(github.getAsanaId(baseData)).toEqual('12345')
+
   baseData.pull_request.title = '123 something'
+  baseData.pull_request.body = ''
   expect(github.getAsanaId(baseData)).toEqual(null)
 })
 
@@ -51,7 +57,8 @@ test('should process', () => {
     'number': 1,
     'pull_request': {
       'url': 'https://api.github.com/repos/Codertocat/Hello-World/pulls/1',
-      'title': 'Update the README with new information'
+      'title': 'Update the README with new information',
+      'body': 'a description'
     },
     'changes': { 'title': { 'from': 'something' } }
   }
@@ -89,6 +96,12 @@ test('should process', () => {
 
   baseData.action = 'opened'
   baseData.pull_request.title = '1234 something'
+  baseData.changes = null
+  expect(github.shouldProcess(baseData)).toEqual(true)
+
+  baseData.action = 'opened'
+  baseData.pull_request.title = 'no id something'
+  baseData.pull_request.body = '1234 id something'
   baseData.changes = null
   expect(github.shouldProcess(baseData)).toEqual(true)
 })
