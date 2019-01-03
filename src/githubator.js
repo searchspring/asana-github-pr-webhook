@@ -1,5 +1,5 @@
 var axios = require('axios')
-const log = require('./log')('agpw:githubator')
+const log = require('debug-with-levels')('agpw:githubator')
 
 /**
  * All the http requests to github.

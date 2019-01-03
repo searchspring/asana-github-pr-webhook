@@ -1,6 +1,6 @@
 const xmlescape = require('xml-escape')
 var asanator = require('./asanator')
-const log = require('./log')('agpw:asana')
+const log = require('debug-with-levels')('agpw:asana')
 
 module.exports.addGithubPrToAsanaTask = async function (githubData, asanaData, replacementAsanator) {
   log.trace('addGithubPrToAsanaTask')

@@ -1,6 +1,6 @@
 {
   "name": "asana-github-pr-webhook",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Puts links from Github into comments on referenced asana tickt",
   "scripts": {
     "test": "node_modules/standard/bin/cmd.js --fix && node node_modules/jest/bin/jest.js --coverage"
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "debug": "^4.1.1",
+    "debug-with-levels": "0.0.2",
     "verify-github-webhook-secret": "^1.0.3",
     "xml-escape": "^1.1.0"
   },
