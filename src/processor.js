@@ -1,6 +1,6 @@
 const github = require('./github')
 const asana = require('./asana')
-const log = require('./log')('agpw:processor')
+const log = require('debug-with-levels')('agpw:processor')
 
 module.exports.processWebhook = async function (data, replacementAsanator, replacementGithubator) {
   log.trace('processWebhook')

@@ -1,5 +1,5 @@
 var axios = require('axios')
-const log = require('./log')('agpw:asanator')
+const log = require('debug-with-levels')('agpw:asanator')
 /**
  * All the http requests to asana
  */

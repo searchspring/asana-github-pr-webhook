@@ -1,6 +1,6 @@
 var githubator = require('./githubator')
 var xmlescape = require('xml-escape')
-const log = require('./log')('agpw:github')
+const log = require('debug-with-levels')('agpw:github')
 
 /**
  * Find possible asana ids in various parts of the pull request webhook body.
