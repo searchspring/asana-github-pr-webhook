@@ -7,8 +7,9 @@ const log = require('./log')('agpw:github')
  * @param {string} data a PR event body from github
  */
 module.exports.getAsanaId = function (data) {
-  var toMatch = data['pull_request']['title']
-  return match(toMatch)
+  var title = data['pull_request']['title']
+  var body = data['pull_request']['body']
+  return match(title) || match(body)
 }
 
 module.exports.addAsanaTaskToGithubPr = async function (githubData, asanaData, replacementGithubator) {
@@ -28,21 +29,24 @@ module.exports.shouldProcess = function (data) {
     return false
   }
 
-  var title = data.pull_request.title
-  var change = data.changes && data.changes.title && data.changes.title.from ? data.changes.title.from : null
-  var titleId = match(title)
+  var id = module.exports.getAsanaId(data)
+  var changedTitle = data.changes && data.changes.title && data.changes.title.from ? data.changes.title.from : null
+  var changedBody = data.changes && data.changes.body && data.changes.body.from ? data.changes.body.from : null
 
-  if (action === 'opened' && titleId !== null) {
+  if (action === 'opened' && id !== null) {
     return true
   }
-  if (change === null) {
+  if (changedTitle === null && changedBody === null) {
     return false
   }
-  var changeId = match(change)
-  return titleId != null && titleId !== changeId && change !== null
+  var changeId = match(changedTitle) || match(changedBody)
+  return id != null && id !== changeId
 }
 
 function match (toMatch) {
+  if (!toMatch) {
+    return null
+  }
   var match = /^([0-9]{4,10})\s+.*/.exec(toMatch)
   return match != null ? match[1] : null
 }
