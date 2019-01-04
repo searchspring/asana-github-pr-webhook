@@ -41,7 +41,7 @@ This project uses Zeit Now to deploy, which requires only a github account and g
 - Fork this repo and download it.
 - Change the `now.json` config to choose a different alias as you won't be able to use the default.  We'll refer to this URL as `<url>`
 - Run `npm init`
-- Run 
+- Run aoeu
     ```bash
     now \
       -e WEBHOOK_SECRET="<webhook secret>" \
