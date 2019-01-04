@@ -1,5 +1,5 @@
 const processor = require('./src/processor')
-const log = require('./src/log')('agpw:webhook')
+const log = require('debug-with-levels')('agpw:webhook')
 const { json, send } = require('micro')
 const verifySecret = require('verify-github-webhook-secret')
 
