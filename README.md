@@ -59,4 +59,4 @@ This project uses Zeit Now to deploy, which requires only a github account and g
 - Set the events to 'Let me select individual events' and check the box next to 'Pull Requests'
 - Save.
 
-Phew, everything should work.
+Everything should work.
