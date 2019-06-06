@@ -48,7 +48,7 @@ This project uses Zeit Now to deploy, which requires only a github account and g
       -e ASANA_ACCESS_TOKEN="<asana access token from step 1>"\
       -e GITHUB_ACCESS_TOKEN="<github access token from step 2>"
     ```
-- Run `now alias` to set the non-changing URL that we can use in step 3.
+- Run `now alias` to set the non-changing URL that we can use in step 4.
 
 ### 4. Setup webhooks in Github
 
