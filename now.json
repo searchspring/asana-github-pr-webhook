@@ -5,6 +5,5 @@
       "src": "webhook.js",
       "use": "@now/node"
     }
-  ],
-  "alias": "asana-github-pr-webhook"
+  ]
 }

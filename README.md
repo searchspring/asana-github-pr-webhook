@@ -27,13 +27,18 @@ See a link to the Asana task appear as a comment on the PR.
 - To get an access token go to 'My Profile Settings' -> Apps -> 'Manage Developer Apps' -> 'Create new personal access token'.
 - Make a note of the access token as you'll need it later on. `<asana access token>`
 
-### 2. Get an Github access token
+### 2. Get your Asana workspace id
+
+- Make sure you're logged in to asana and go to `https://app.asana.com/api/1.0/workspaces`
+- Make a note of the gid as you'll need it later on. `<workspace id>`
+
+### 3. Get an Github access token
 
 - To get an access token go to 'Settings' -> 'Developer Settings' -> 'Personal Access Token' -> 'Generate new token'.
 - Under 'scopes' select 'Repo'.
 - Make a note of the access token as you'll need it later on. `<github access token>`
 
-### 3. Deploy the application
+### 4. Deploy the application
 
 This project uses Zeit Now to deploy, which requires only a github account and gives you 2 million free invocations a month.
 
@@ -46,14 +51,15 @@ This project uses Zeit Now to deploy, which requires only a github account and g
     now \
       -e WEBHOOK_SECRET="<webhook secret>" \
       -e ASANA_ACCESS_TOKEN="<asana access token from step 1>"\
-      -e GITHUB_ACCESS_TOKEN="<github access token from step 2>"
+      -e WORKSPACE_ID="<workspace id from step 2>"\
+      -e GITHUB_ACCESS_TOKEN="<github access token from step 3>"
     ```
-- Run `now alias` to set the non-changing URL that we can use in step 4.
+- Run `now alias` to set the non-changing URL that we can use in step 5.
 
-### 4. Setup webhooks in Github
+### 5. Setup webhooks in Github
 
 - For the github project you want to integrate, go to settings -> webhooks -> add a new webhook.
-- Set the Payload URL to `https://<url from step 2>/webhook.js`
+- Set the Payload URL to `https://<url from step 3>/webhook.js`
 - Set the content type to `application/json`
 - Set the secret to `<webhook secret>`
 - Set the events to 'Let me select individual events' and check the box next to 'Pull Requests'

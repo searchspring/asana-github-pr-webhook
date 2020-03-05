@@ -4,6 +4,7 @@ const log = require('debug-with-levels')('agpw:asanator')
  * All the http requests to asana
  */
 module.exports.asanaAccessToken = process.env.ASANA_ACCESS_TOKEN
+module.exports.workspaceId = process.env.WORKSPACE_ID
 
 module.exports.addComment = async function (gid, comment) {
   log.trace('addComment')
@@ -24,7 +25,7 @@ module.exports.searchByDate = async function (before, after) {
   log.trace('searchByDate')
   try {
     var options = createOptions()
-    var url = 'https://app.asana.com/api/1.0/workspaces/6997325340207/tasks/search' +
+    var url = 'https://app.asana.com/api/1.0/workspaces/' + module.exports.workspaceId + '/tasks/search' +
       '?opt_fields=gid,name' +
       '&modified_at.before=' + before.toISOString() +
       '&modified_at.after=' + after.toISOString() +
