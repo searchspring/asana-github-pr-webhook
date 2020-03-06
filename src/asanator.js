@@ -10,7 +10,7 @@ module.exports.addComment = async function (gid, comment) {
   log.trace('addComment')
   try {
     var options = createOptions()
-    var data = { 'data': { 'html_text': '<body>' + comment + '</body>' } }
+    var data = { 'data': { 'is_pinned': true, 'html_text': '<body>' + comment + '</body>' } }
     var url = 'https://app.asana.com/api/1.0/tasks/' + gid + '/stories'
     log.debug(url, data, options)
     var res = await axios.post(url, data, options)
