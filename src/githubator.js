@@ -9,9 +9,11 @@ module.exports.githubAccessToken = process.env.GITHUB_ACCESS_TOKEN
 module.exports.addComment = async function (apiUrl, message) {
   log.trace('addComment')
   try {
-    var url = apiUrl + '/comments?access_token=' + module.exports.githubAccessToken
+    var url = apiUrl + '/comments'
     log.debug(url)
-    var res = await axios.post(url, { 'body': message })
+    var res = await axios.post(url, { 'body': message }, {
+      'headers': { 'Authorization': 'token ' + module.exports.githubAccessToken }
+    })
     log.debug(res)
   } catch (error) {
     log.error(error)
