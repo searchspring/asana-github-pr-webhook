@@ -48,7 +48,6 @@ jobs:
           name: Now deploy
           command: |
             now --token $ZEIT_TOKEN -e DEBUG="agpw:*info" -e WEBHOOK_SECRET=$WEBHOOK_SECRET -e ASANA_ACCESS_TOKEN=$ASANA_ACCESS_TOKEN -e GITHUB_ACCESS_TOKEN=$GITHUB_ACCESS_TOKEN
-            now --token $ZEIT_TOKEN alias
 
 workflows:
   version: 2
