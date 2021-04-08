@@ -4,7 +4,7 @@ const log = require('debug-with-levels')('agpw:asanator')
  * All the http requests to asana
  */
 module.exports.asanaAccessToken = process.env.ASANA_ACCESS_TOKEN
-module.exports.workspaceId = process.env.WORKSPACE_ID
+module.exports.workspaceId = process.env.ASANA_WORKSPACE_ID
 
 module.exports.addComment = async function (gid, comment) {
   log.trace('addComment')
