@@ -5,12 +5,12 @@ const verifySecret = require('verify-github-webhook-secret')
 
 module.exports = async (req, res) => {
   log.trace('request')
-  const webhookSecret = process.env.WEBHOOK_SECRET
+  const webhookSecret = process.env.GITHUB_WEBHOOK_SECRET
   const asanaAccessToken = process.env.ASANA_ACCESS_TOKEN
   const githubAccessToken = process.env.GITHUB_ACCESS_TOKEN
 
   if (!webhookSecret) {
-    var noWebhookMessage = 'No WEBHOOK_SECRET set so wont run any thing'
+    var noWebhookMessage = 'No GITHUB_WEBHOOK_SECRET set so wont run any thing'
     log.error(noWebhookMessage)
     send(res, 403, noWebhookMessage)
     return
@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
   }
 
   log.info('starting with: ')
-  log.info('WEBHOOK_SECRET=: ********' + webhookSecret.slice(-4))
+  log.info('GITHUB_WEBHOOK_SECRET=: ********' + webhookSecret.slice(-4))
   log.info('ASANA_ACCESS_TOKEN=: ********' + asanaAccessToken.slice(-4))
   log.info('GITHUB_ACCESS_TOKEN=: ********' + githubAccessToken.slice(-4))
 

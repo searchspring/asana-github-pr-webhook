@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "env": {
+    "ASANA_ACCESS_TOKEN": "@pr-webhook-asana-access-token",
+    "ASANA_WORKSPACE_ID": "@pr-webhook-asana-workspace-id",
+    "GITHUB_WEBHOOK_SECRET": "@pr-webhook-github-webhook-secret",
+    "GITHUB_ACCESS_TOKEN":"@pr-webhook-github-access-token"
+  },
+  "builds": [
+    {
+      "src": "webhook.js",
+      "use": "@now/node"
+    }
+  ]
+}
+
